@@ -15,103 +15,54 @@ const render = require("./lib/htmlRenderer");
 inquirer.prompt([
   {
     type: "input",
-    message: "What is your manager's name?",
-    name: "managerName",
+    name: "name",
+    message: "Name:",
   },
   {
     type: "input",
-    message: "What is your manager's id?",
-    name: "managerId",
+    name: "id",
+    message: "ID#:",
   },
   {
     type: "input",
-    message: "What is your manager's email?",
-    name: "managerEmail",
+    name: "email",
+    message: "Email:",
   },
   {
-    type: "input",
-    message: "What is your manager's phone number?",
-    name: "managerPhone",
+    type: "list",
+    message: "Role?",
+    name: "role",
+    choices: ["Manager", "Engineer", "Intern"],
   },
   {
+    when: (answer) => {
+      return answer.role === "Manager";
+    },
     type: "input",
-    message: "What is your 1st engineer's name?",
-    name: "engineerName1",
+    name: "officeNumber",
+    message: "Enter their office number:",
   },
   {
+    when: (answer) => {
+      return answer.role === "Engineer";
+    },
     type: "input",
-    message: "What is your 1st engineer's id?",
-    name: "engineerId1",
+    name: "github",
+    message: "GitHub user name:",
   },
   {
+    when: (answer) => {
+      return answer.role === "Intern";
+    },
     type: "input",
-    message: "What is your 1st engineer's email?",
-    name: "engineerEmail1",
+    name: "school",
+    message: "School:",
   },
   {
-    type: "input",
-    message: "What is your 1st engineer's github username?",
-    name: "engineerGithub1",
-  },
-  {
-    type: "input",
-    message: "What is your 2nd engineer's name?",
-    name: "engineerName2",
-  },
-  {
-    type: "input",
-    message: "What is your 2nd engineer's id?",
-    name: "engineerId2",
-  },
-  {
-    type: "input",
-    message: "What is your 2nd engineer's email?",
-    name: "engineerEmail2",
-  },
-  {
-    type: "input",
-    message: "What is your 2nd engineer's github username?",
-    name: "engineerGithub2",
-  },
-  {
-    type: "input",
-    message: "What is your 3rd engineer's name?",
-    name: "engineerName3",
-  },
-  {
-    type: "input",
-    message: "What is your 3rd engineer's id?",
-    name: "engineerId3",
-  },
-  {
-    type: "input",
-    message: "What is your 3rd engineer's email?",
-    name: "engineerEmail3",
-  },
-  {
-    type: "input",
-    message: "What is your 3rd engineer's github username?",
-    name: "engineerGithub3",
-  },
-  {
-    type: "input",
-    message: "What is your intern's name?",
-    name: "internName",
-  },
-  {
-    type: "input",
-    message: "What is your intern's id?",
-    name: "internId",
-  },
-  {
-    type: "input",
-    message: "What is your intern's email?",
-    name: "internEmail",
-  },
-  {
-    type: "input",
-    message: "What is your intern's school?",
-    name: "internSchool",
+    type: "list",
+    name: "addPerson",
+    message: "Would you like to add someone else?",
+    choices: ["Yes", "No"],
   },
 ]);
 // After the user has input all employees desired, call the `render` function (required
