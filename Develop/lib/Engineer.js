@@ -7,6 +7,4 @@ class Engineer extends Employee {
   }
 }
 
-// test
-// const engineer = new Engineer("bob", 123, "bob@aol.com", "bobbycodes");
-// console.log("engineer:", engineer);
+module.exports = Engineer;
